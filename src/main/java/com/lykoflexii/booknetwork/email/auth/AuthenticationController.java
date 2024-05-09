@@ -1,4 +1,4 @@
-package com.lykoflexii.booknetwork.auth;
+package com.lykoflexii.booknetwork.email.auth;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;

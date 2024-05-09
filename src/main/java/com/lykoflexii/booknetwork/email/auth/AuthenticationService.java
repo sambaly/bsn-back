@@ -1,4 +1,4 @@
-package com.lykoflexii.booknetwork.auth;
+package com.lykoflexii.booknetwork.email.auth;
 
 import com.lykoflexii.booknetwork.email.EmailService;
 import com.lykoflexii.booknetwork.email.EmailTemplateName;

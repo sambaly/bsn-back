@@ -1,4 +1,4 @@
-package com.lykoflexii.booknetwork.auth;
+package com.lykoflexii.booknetwork.email.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,14 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class RegistrationRequest {
-  @NotEmpty(message = "Firstname is mandatory")
-  @NotBlank(message = "Firstname is mandatory")
-  private String firstname;
-
-  @NotEmpty(message = "Lastname is mandatory")
-  @NotBlank(message = "Lastname is mandatory")
-  private String lastname;
+public class AuthenticationRequest {
 
   @Email(message = "Email is malformated")
   @NotEmpty(message = "Email is mandatory")
@@ -29,5 +22,4 @@ public class RegistrationRequest {
   @NotBlank(message = "Password is mandatory")
   @Size(min = 8, message = "Password should be 8 characters long minimum.")
   private String password;
-
 }
