@@ -4,10 +4,7 @@ import com.lykoflexii.booknetwork.common.BaseEntity;
 import com.lykoflexii.booknetwork.feedback.Feedback;
 import com.lykoflexii.booknetwork.history.BookTransactionHistory;
 import com.lykoflexii.booknetwork.user.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +28,6 @@ public class Book extends BaseEntity {
   private boolean archived;
   private boolean shareable;
 
-
   @ManyToOne
   @JoinColumn(name = "owner_id")
   private User owner;
@@ -41,4 +37,18 @@ public class Book extends BaseEntity {
 
   @OneToMany(mappedBy = "book")
   private List<BookTransactionHistory> histories;
+
+  @Transient
+  public double getRate() {
+    if (feedbacks == null || feedbacks.isEmpty()) {
+      return 0.0;
+    }
+    var rate = this.feedbacks
+            .stream()
+            .mapToDouble(Feedback::getNote)
+            .average()
+            .orElse(0.0);
+
+    return Math.round(rate * 10.0) / 10.0;
+  }
 }
